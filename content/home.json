@@ -1,4 +1,4 @@
 {
   "title": "This is the homepage 🤠🤠🤠",
-  "markdownBody": "# This is some content"
+  "markdownBody": "# Heading 1\n\n## Heading 2\n\n### Heading 3\n\n**Bold**\n\n_Italic_\n\n| table | table | table |\n| --- | --- | --- |\n|  |  |  |\n|  |  |  |\n"
 }

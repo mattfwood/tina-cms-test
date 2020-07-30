@@ -7,7 +7,6 @@ import { usePlugin } from 'tinacms'
 import {
   InlineForm,
   InlineTextField,
-  InlineWysiwyg,
 } from 'react-tinacms-inline'
 import { GetStaticProps } from 'next'
 

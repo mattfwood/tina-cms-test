@@ -2,7 +2,8 @@ import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
 import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
 
-// import '../styles/index.css';
+import '../styles/base.css';
+import '../styles/index.css';
 
 export default class Site extends App {
   cms: TinaCMS

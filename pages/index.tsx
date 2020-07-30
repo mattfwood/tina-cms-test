@@ -6,14 +6,12 @@ import { useCMS, usePlugin } from 'tinacms'
 import {
   InlineField,
   InlineForm,
-  InlineFormContext,
   InlineTextField,
 } from 'react-tinacms-inline'
 import ReactMarkdown from 'react-markdown'
-import { InlineWysiwyg, Wysiwyg } from 'react-tinacms-editor'
+import { Wysiwyg } from 'react-tinacms-editor'
 
 import { GetStaticProps } from 'next'
-import { useContext } from 'react'
 
 export default function Home({ file }) {
   const formOptions = {
@@ -44,15 +42,14 @@ export default function Home({ file }) {
         <h1>
           <InlineTextField name="title" />
         </h1>
-        {/* <InlineWysiwyg name="markdownBody" format="markdown">
-          <article className="prose lg:prose-xl">
-            <ReactMarkdown source={data.markdownBody} />
-          </article>
-        </InlineWysiwyg> */}
         <InlineField name="markdownBody">
             {({ input }) => {
             if (enabled) {
-              return <Wysiwyg input={input} />
+              return (
+                <article className="prose lg:prose-xl">
+                  <Wysiwyg input={input} />
+                </article>
+              )
             }
               return (
                 <article className="prose lg:prose-xl">

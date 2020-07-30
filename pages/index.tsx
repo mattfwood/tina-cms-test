@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 import { useGithubJsonForm, useGithubToolbarPlugins } from 'react-tinacms-github'
@@ -8,6 +7,9 @@ import {
   InlineForm,
   InlineTextField,
 } from 'react-tinacms-inline'
+import ReactMarkdown from 'react-markdown'
+import { InlineWysiwyg } from 'react-tinacms-editor'
+
 import { GetStaticProps } from 'next'
 
 export default function Home({ file }) {
@@ -22,20 +24,24 @@ export default function Home({ file }) {
   useGithubToolbarPlugins()
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-          <InlineForm form={form}>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          <InlineTextField name="title" />
-        </h1>
+      <InlineForm form={form}>
+        <main>
+          <h1>
+            <InlineTextField name="title" />
+          </h1>
+          <InlineWysiwyg name="markdownBody" format="markdown">
+            <article className="prose">
+              <ReactMarkdown source={data.markdownBody} />
+            </article>
+          </InlineWysiwyg>
         </main>
-        </InlineForm>
+      </InlineForm>
     </div>
   )
 }

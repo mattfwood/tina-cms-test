@@ -4,6 +4,11 @@ import styles from '../styles/Home.module.css'
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 import { useGithubJsonForm, useGithubToolbarPlugins } from 'react-tinacms-github'
 import { usePlugin } from 'tinacms'
+import {
+  InlineForm,
+  InlineTextField,
+  InlineWysiwyg,
+} from 'react-tinacms-inline'
 import { GetStaticProps } from 'next'
 
 export default function Home({ file }) {
@@ -24,11 +29,14 @@ export default function Home({ file }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+          <InlineForm form={form}>
+
       <main className={styles.main}>
         <h1 className={styles.title}>
-          {data.title}
+          <InlineTextField name="title" />
         </h1>
-      </main>
+        </main>
+        </InlineForm>
     </div>
   )
 }

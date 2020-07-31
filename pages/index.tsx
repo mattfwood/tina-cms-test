@@ -1,5 +1,4 @@
 import Head from 'next/head'
-
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
 import { useGithubJsonForm, useGithubToolbarPlugins } from 'react-tinacms-github'
 import { useCMS, usePlugin } from 'tinacms'
@@ -23,12 +22,8 @@ export default function Home({ file }) {
 
   const { enabled } = useCMS();
 
-  // const context = useContext();
-
   usePlugin(form)
-  // useGithubToolbarPlugins()
-
-  // console.log({ data, form });
+  useGithubToolbarPlugins()
 
   return (
     <div>

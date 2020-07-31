@@ -1,4 +1,4 @@
 {
   "title": "This is the homepage 🤠🤠🤠",
-  "markdownBody": "1. Test\n2. Test\n3. Test test\n\n# Heading\n\n## Heading 2\n\n### Heading 3\n\n[Link](google.com)\n\n**BOLD TEXT**\n\nHello!"
+  "markdownBody": "1. Test\n2. Test\n3. Test test\n\n# Heading\n\n## Heading 2\n\n### Heading 3\n\n[Link](google.com)\n\n**BOLD TEXT**\n\nHello!\n\n| Ingredient | Amount |  |\n| --- | --- | --- |\n| Butter | 1 Bucket |  |\n| something |  |  |\n"
 }

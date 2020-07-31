@@ -38,7 +38,7 @@ export default function Recipe({ file }) {
 
       <main className="py-2">
         <InlineForm form={form}>
-          <h1 className="text-3xl leading-9 font-extrabold text-gray-900 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-6">
+          <h1 className="text-3xl leading-9 font-extrabold text-gray-900 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 my-6">
             <InlineTextField name="title" />
           </h1>
           <InlineField name="markdownBody">

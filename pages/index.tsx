@@ -50,18 +50,3 @@ export const getStaticProps: GetStaticProps = async function ({
     },
   };
 };
-
-export async function getStaticPaths() {
-  const recipes = getAllPosts(['slug']);
-
-  return {
-    paths: recipes.map((recipe) => {
-      return {
-        params: {
-          slug: slugify(recipe.title),
-        },
-      };
-    }),
-    fallback: false,
-  };
-}

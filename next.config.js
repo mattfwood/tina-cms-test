@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 
 module.exports = {
   env: {
@@ -7,4 +7,4 @@ module.exports = {
     BASE_BRANCH: process.env.BASE_BRANCH,
   },
   // ...
-}
+};

@@ -1,15 +1,16 @@
-import App from 'next/app'
-import { TinaCMS, TinaProvider } from 'tinacms'
-import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github'
+import React from 'react';
+import App from 'next/app';
+import { TinaCMS, TinaProvider } from 'tinacms';
+import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github';
 
 import '../styles/base.css';
 import '../styles/index.css';
 
 export default class Site extends App {
-  cms: TinaCMS
+  cms: TinaCMS;
 
   constructor(props) {
-    super(props)
+    super(props);
     /**
      * 1. Create the TinaCMS instance
      */
@@ -31,11 +32,11 @@ export default class Site extends App {
        */
       sidebar: props.pageProps.preview,
       toolbar: props.pageProps.preview,
-    })
+    });
   }
 
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps } = this.props;
     return (
       /**
        * 4. Wrap the page Component with the Tina and Github providers
@@ -49,39 +50,39 @@ export default class Site extends App {
           {/**
            * 5. Add a button for entering Preview/Edit Mode
            */}
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+          <div className="max-w-3xl mx-auto px-4 py-2 sm:px-6 xl:max-w-5xl xl:px-0">
             <EditLink cms={this.cms} />
             <Component {...pageProps} />
           </div>
         </TinacmsGithubProvider>
       </TinaProvider>
-    )
+    );
   }
 }
 
 const onLogin = async () => {
-  const token = localStorage.getItem('tinacms-github-token') || null
-  const headers = new Headers()
+  const token = localStorage.getItem('tinacms-github-token') || null;
+  const headers = new Headers();
 
   if (token) {
-    headers.append('Authorization', 'Bearer ' + token)
+    headers.append('Authorization', 'Bearer ' + token);
   }
 
-  const resp = await fetch(`/api/preview`, { headers: headers })
-  const data = await resp.json()
+  const resp = await fetch(`/api/preview`, { headers: headers });
+  const data = await resp.json();
 
-  if (resp.status == 200) window.location.href = window.location.pathname
-  else throw new Error(data.message)
-}
+  if (resp.status == 200) window.location.href = window.location.pathname;
+  else throw new Error(data.message);
+};
 
 const onLogout = () => {
   return fetch(`/api/reset-preview`).then(() => {
-    window.location.reload()
-  })
-}
+    window.location.reload();
+  });
+};
 
 export interface EditLinkProps {
-  cms: TinaCMS
+  cms: TinaCMS;
 }
 
 export const EditLink = ({ cms }: EditLinkProps) => {
@@ -89,5 +90,5 @@ export const EditLink = ({ cms }: EditLinkProps) => {
     <button className="btn-blue" onClick={() => cms.toggle()}>
       {cms.enabled ? 'Exit Edit Mode' : 'Edit This Site'}
     </button>
-  )
-}
+  );
+};

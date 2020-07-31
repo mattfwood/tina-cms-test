@@ -51,6 +51,9 @@ export default class Site extends App {
            * 5. Add a button for entering Preview/Edit Mode
            */}
           <div className="max-w-3xl mx-auto px-4 py-2 sm:px-6 xl:max-w-5xl xl:px-0">
+            <h1 className="text-3xl leading-9 font-extrabold text-gray-900 tracking-tight sm:leading-10 md:leading-14 my-4">
+              The People's Cookbook
+            </h1>
             <EditLink cms={this.cms} />
             <Component {...pageProps} />
           </div>

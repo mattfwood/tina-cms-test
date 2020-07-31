@@ -6,6 +6,8 @@ import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github';
 import '../styles/base.css';
 import '../styles/index.css';
 import Link from 'next/link';
+import { RecipeCreatorPlugin } from '../lib/RecipeCreatorPlugin';
+import { MarkdownFieldPlugin } from 'react-tinacms-editor';
 
 export default class Site extends App {
   cms: TinaCMS;
@@ -34,6 +36,9 @@ export default class Site extends App {
       sidebar: props.pageProps.preview,
       toolbar: props.pageProps.preview,
     });
+
+    this.cms.plugins.add(MarkdownFieldPlugin);
+    this.cms.plugins.add(RecipeCreatorPlugin);
   }
 
   render() {
@@ -57,7 +62,7 @@ export default class Site extends App {
                 <a>The People's Cookbook</a>
               </Link>
             </h1>
-            <EditLink cms={this.cms} />
+            {/* <EditLink cms={this.cms} /> */}
             <Component {...pageProps} />
           </div>
         </TinacmsGithubProvider>

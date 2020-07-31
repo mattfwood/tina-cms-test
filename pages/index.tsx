@@ -1,33 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
-import { getGithubPreviewProps, parseJson } from 'next-tinacms-github';
-import {
-  useGithubJsonForm,
-  useGithubToolbarPlugins,
-} from 'react-tinacms-github';
-import { useCMS, usePlugin } from 'tinacms';
-import { InlineField, InlineForm, InlineTextField } from 'react-tinacms-inline';
-import ReactMarkdown from 'react-markdown';
-import { Wysiwyg } from 'react-tinacms-editor';
+
+import Link from 'next/link';
 
 import { GetStaticProps } from 'next';
+import { getAllPosts, slugify } from '../lib/utils';
 
-export default function Home({ file }) {
-  const formOptions = {
-    label: 'Home Page',
-    fields: [
-      { name: 'title', component: 'text' },
-      { name: 'markdownBody', component: 'wysiwyg' },
-    ],
-  };
-
-  const [data, form] = useGithubJsonForm(file, formOptions);
-
-  const { enabled } = useCMS();
-
-  usePlugin(form);
-  useGithubToolbarPlugins();
-
+export default function Home({ recipes, ...props }) {
   return (
     <div>
       <Head>
@@ -36,27 +15,16 @@ export default function Home({ file }) {
       </Head>
 
       <main className="py-2">
-        <InlineForm form={form}>
-          <h1 className="text-3xl leading-9 font-extrabold text-gray-900 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 mb-6">
-            <InlineTextField name="title" />
-          </h1>
-          <InlineField name="markdownBody">
-            {({ input }) => {
-              if (enabled) {
-                return (
-                  <article className="prose lg:prose-xl">
-                    <Wysiwyg input={input} />
-                  </article>
-                );
-              }
-              return (
-                <article className="prose lg:prose-xl">
-                  <ReactMarkdown source={input.value} />
-                </article>
-              );
-            }}
-          </InlineField>
-        </InlineForm>
+        {recipes.map((recipe) => (
+          <h2
+            key={recipe.title}
+            className="text-2xl leading-8 font-bold tracking-tight"
+          >
+            <Link as={`/recipes/${recipe.slug}`} href="/recipes/[slug]">
+              <a className="hover:underline text-gray-900">{recipe.title}</a>
+            </Link>
+          </h2>
+        ))}
       </main>
     </div>
   );
@@ -69,22 +37,31 @@ export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
 }) {
-  if (preview) {
-    return getGithubPreviewProps({
-      ...previewData,
-      fileRelativePath: 'content/home.json',
-      parse: parseJson,
-    });
-  }
+  const recipes = getAllPosts(['slug']);
+
   return {
     props: {
-      sourceProvider: null,
-      error: null,
-      preview: false,
-      file: {
-        fileRelativePath: 'content/home.json',
-        data: (await import('../content/home.json')).default,
-      },
+      recipes: recipes.map((recipe) => {
+        return {
+          ...recipe,
+          slug: slugify(recipe.title),
+        };
+      }),
     },
   };
 };
+
+export async function getStaticPaths() {
+  const recipes = getAllPosts(['slug']);
+
+  return {
+    paths: recipes.map((recipe) => {
+      return {
+        params: {
+          slug: slugify(recipe.title),
+        },
+      };
+    }),
+    fallback: false,
+  };
+}

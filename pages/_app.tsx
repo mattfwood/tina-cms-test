@@ -5,6 +5,7 @@ import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github';
 
 import '../styles/base.css';
 import '../styles/index.css';
+import Link from 'next/link';
 
 export default class Site extends App {
   cms: TinaCMS;
@@ -52,7 +53,9 @@ export default class Site extends App {
            */}
           <div className="max-w-3xl mx-auto px-4 py-2 sm:px-6 xl:max-w-5xl xl:px-0">
             <h1 className="text-3xl leading-9 font-extrabold text-gray-900 tracking-tight sm:leading-10 md:leading-14 my-4">
-              The People's Cookbook
+              <Link href="/">
+                <a>The People's Cookbook</a>
+              </Link>
             </h1>
             <EditLink cms={this.cms} />
             <Component {...pageProps} />

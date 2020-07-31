@@ -28,7 +28,7 @@ export default function Home({ file }) {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Cook Book</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

@@ -11,7 +11,7 @@
     "@tailwindcss/typography": "^0.2.0",
     "dotenv": "^8.2.0",
     "gray-matter": "^4.0.2",
-    "next": "^9.5.1",
+    "next": "^9.5.4",
     "next-tinacms-github": "^0.25.0",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
